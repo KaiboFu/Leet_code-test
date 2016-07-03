@@ -9,21 +9,87 @@ typedef struct ListNode {
 
 class List{
 public:
-    List();
-    ListNode* Creat();
+    List():head(NULL) {};
+    ListNode* addNode_back(const int&d);
+    void printList();
+    void printList(List& L);
+    void printList(ListNode* p);
+    ListNode* Insert(const int pos, const int e);
 private:
    ListNode* head;
-
  };
+ListNode* List::addNode_back(const int& d){
+    ListNode* p = new ListNode(d);
+    if (!head){
+        head = p;
+    }
+    else{
+        ListNode* q = head;
+        ListNode* q1 = head->next;
+        while(q1){
+            q = q->next;
+            q1 = q->next;
+        }
+        q->next = p;
+    }
+     return head;
+}
 
-
-
-void printList( ListNode* p ){
-	while (p){
+void List::printList(){
+    ListNode* p = head;
+	while (p->next){
 		cout << p->val << "->";
 		p = p->next;
 	}
+	cout<<p->val;
 	cout <<endl;
+}
+void List::printList(List& L){
+    ListNode* p = L.head;
+	while (p->next){
+		cout << p->val << "->";
+		p = p->next;
+	}
+	cout<<p->val;
+	cout <<endl;
+}
+void List::printList(ListNode* p){
+	while (p->next){
+		cout << p->val << "->";
+		p = p->next;
+	}
+	cout<<p->val;
+	cout <<endl;
+}
+
+ListNode* List::Insert(const int pos, const int e){
+    if(pos == 1){
+        ListNode* p = new ListNode(e);
+        p->next = head;
+        head = p;
+        return head;
+    }
+    else{
+        int i = 1;
+        ListNode* ele = new ListNode(e);
+        ListNode* p = head;
+        for(; i < pos - 1 && (p->next); i++ ){
+             p = p->next;
+        }
+        ListNode* temp = p->next;
+        p->next = ele;
+        ele->next = temp;
+        return head;
+    }
+}
+
+void printList( ListNode* p ){
+	while (p->next){
+		cout << p->val << "->";
+		p = p->next;
+	}
+	cout << p->val;
+	cout << endl;
 }
 ListNode* addNode_front(const int& d, ListNode* head){
     ListNode* p = new ListNode(d);
@@ -37,12 +103,16 @@ ListNode* addNode_back(const int& d, ListNode* head){
         head = p;
     }
     else{
-        head->next = p;
-        head = p;
+        ListNode* q = head;
+        ListNode* q1 = head->next;
+        while(q1){
+            q = q->next;
+            q1 = q->next;
+        }
+        q->next = p;
     }
      return head;
 }
-
 
 ListNode* addTwoNumbers(ListNode* l1, ListNode* l2){
     ListNode * pCurrent, * pNext, * pHead = NULL;
@@ -82,19 +152,23 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2){
 
 int main(){
 	int a[3] = {2,6,4};
-	ListNode l1(0);
-	ListNode* head = NULL;
-    head = addNode_front(a[0], head);
-    head = addNode_front(a[1], head);
-    head = addNode_front(a[2], head);
-    printList(head);
 
-    ListNode* head1 = NULL, *pcurrent;
-    pcurrent = addNode_back(a[0], head1);
-    head1 = pcurrent;
-    head1 = addNode_back(a[1],head1);
-    head1 = addNode_back(a[2],head1);
-    printList(pcurrent);
+	List L2;
+	ListNode* head2 = NULL;
+	head2 = addNode_back(a[0], head2);
+	//printList(head1);
+	head2 = addNode_back(a[1], head2);
+	L2.Insert(1,a[2]);
+	L2.printList();
+	L2.addNode_back(a[0]);
+	L2.addNode_back(a[1]);
+	L2.Insert(1,9);
+	L2.printList();
+    L2.Insert(3,5);
+	L2.printList();
+	cout<<"------------"<<endl;
+	L2.printList(L2);
+	L2.printList(L2.head);
 	return 0;
 
 }
