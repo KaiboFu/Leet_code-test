@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1454408044 source:e:\acm\数据结构\单链表\linklist\linklist.c
+	<stdio.h>
+	<malloc.h>
+	"LinkList.h"
+
+1454408150 e:\acm\数据结构\单链表\linklist\linklist.h
+
+1454409113 source:e:\acm\数据结构\单链表\linklist\main.c
+	<stdio.h>
+	<stdlib.h>
+	"LinkList.h"
+
