@@ -9,7 +9,7 @@
 using namespace std;
 
 int findPeakElement( vector<int>& nums ){
-    // simple binary search , O(logn), violence search O(n)
+    // simple binary search , O(logn), violent search O(n)
     int left = 0, right = nums.size() - 1;
     while (left < right){
         int mid = (left + right)/2;
